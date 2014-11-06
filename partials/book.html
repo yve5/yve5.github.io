@@ -1,0 +1,57 @@
+<div id="top" class="row">
+  <div ng-show="shwPgntn" class="col-sm-12 text-center">
+    <ul class="pagination">
+      <li ng-class="{ 'disabled' : !previous }"><a ng-click="goToPage(previous)">&lt;&lt; <span class="hidden-xs">{{ 'previous' | i18n }}</span></a></li>
+      <li ng-repeat="(key, value) in items" ng-class="{ 'active' : value.isActive }">
+        <a ng-click="goToPage(value.id)">{{value.id}}</a>
+      </li>
+      <li ng-class="{ 'disabled' : !next }"><a ng-click="goToPage(next)"><span class="hidden-xs">{{ 'next' | i18n }}</span> &gt;&gt;</a></li>
+    </ul>
+  </div>
+  <br ng-hide="shwPgntn">
+  <br ng-hide="shwPgntn">
+  <br ng-hide="shwPgntn">
+  <br ng-hide="shwPgntn">
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div ng-switch="family">
+      <div ng-switch-when="6">
+        <div class="row">
+          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
+            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="51">
+        <div class="row">
+          <img ng-src="{{ cell[0].url}}" alt="{{ cell[0].alt}}" class="img-responsive center-block img-rounded" />
+
+          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
+            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="3">
+        <div class="row">
+          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
+            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-default="">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center hidden-lg hidden-md">
+  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <a ng-click="backToTop()" class="btn btn-default">{{ 'back_to_top' | i18n }}</a>
+    <br>
+    <br>
+  </div>
+</div>

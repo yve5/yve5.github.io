@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-12 col-md-10 col-md-offset-1">
+    <h1>{{ 'magic trick' | i18n }}</h1>
+
+    <div ng-switch="current">
+      <div ng-switch-default="">
+        <p class="text-justify">{{ 'magic trick notice' | i18n }}</p>
+        <h2>{{ 'step n' | i18n:'{ num : "' + current + '" }' }}</h2>
+        <p>
+          <button class="btn btn-primary magic-btn" ng-repeat="item in tab">{{ item}}</button>
+        </p>
+        <br>
+        <p>{{ 'do you see your number ?' | i18n }}</p>
+        <p>
+          <a href="" class="btn btn-success" role="button" ng-click="answerYes()">{{ 'yes' | i18n }}</a>
+          <a href="" class="btn btn-danger" role="button" ng-click="answerNo()">{{ 'no' | i18n }}</a>
+        </p>
+      </div>
+
+      <div ng-switch-when="7">
+        <h2>{{ 'result' | i18n }}</h2>
+        <p class="alert alert-danger">{{ 'your number is 42.' | i18n:'{ res : "' + result + '" }' }}</p>
+        <p><a href="#/magic-trick/page-1" class="btn btn-primary" role="button">{{ 'try again ?' | i18n }}</a></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" ng-app="myApp">
   <head>
-    <title>Lorem ipsum</title>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break Box - Yve5</title>
+
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/app.min.css"/>
+
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="lib/html5shiv.js"></script>
+    <script src="lib/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          <div ng-header></div>
+        </div>
+        <div class="col-sm-10">
+          <div ng-view></div>
+        </div>
+      </div>
     </div>
+
+    <div ng-footer></div>
+
+    <noscript>Please active JavaScript on your web browser.</noscript>
+
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.min.js"></script>
+    
+    <script src="lib/translate/angular-my-translate.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.10.0.min.js"></script>
+
+    <script src="js/script.min.js"></script>
+
   </body>
 </html>
