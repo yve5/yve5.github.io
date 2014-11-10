@@ -1,18 +1,10 @@
 <div id="navanchor" class="row top-buffer">
-  <div class="col-sm-12 col-xs-2 bottom-buffer">
-    <div class="btn-group">
-      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-        {{ 'lang' | i18n }} <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="" ng-click="changeLangage('en')">{{ 'button_lang_en' | i18n }}</a></li>
-        <li><a href="" ng-click="changeLangage('fr')">{{ 'button_lang_fr' | i18n }}</a></li>
-      </ul>
-    </div>
+  <div class="col-md-12 col-xs-2 bottom-buffer hidden-print">
+    <a href="" class="btn btn-default" ng-click="changeLang(!isInEnglish)">{{ 'lang' | i18n }}</a>
   </div>
-
-  <div class="col-sm-12 col-xs-2">
-    <a href="#" ng-hide="isHome" class="btn btn-default btn-sm">
+  
+  <div class="col-md-12  col-xs-2 pull-right hidden-print">
+    <a href="#" ng-hide="isHome" class="btn btn-default">
       <span class="glyphicon glyphicon-home"></span>
     </a>
   </div>
