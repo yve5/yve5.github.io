@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-12 col-md-10 col-md-offset-1">
+    <h1>{{ 'gallery' | i18n }}</h1>
+
+    <div class="row">
+      <div class="col-xs-12" ng-repeat="item in items">
+
+        <h2>{{ item.title | i18n }}</h2>
+        <img ng-src="{{ item.url}}" alt="{{ item.desc}}" class="img-responsive img-rounded center-block">
+
+      </div>
+    </div>
+    
+    <br>
+  </div>
+</div>

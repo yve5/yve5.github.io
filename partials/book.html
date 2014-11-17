@@ -1,6 +1,6 @@
 <div id="top" class="row">
   <div ng-show="shwPgntn" class="col-sm-12 text-center">
-    <ul class="pagination">
+    <ul class="pagination poincursor">
       <li ng-class="{ 'disabled' : !previous }"><a ng-click="goToPage(previous)">&lt;&lt; <span class="hidden-xs">{{ 'previous' | i18n }}</span></a></li>
       <li ng-repeat="(key, value) in items" ng-class="{ 'active' : value.isActive }">
         <a ng-click="goToPage(value.id)">{{value.id}}</a>
@@ -19,18 +19,123 @@
     <div ng-switch="family">
       <div ng-switch-when="6">
         <div class="row">
-          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
-            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+<!--          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6">
+            <img ng-src="{{cell.url}}" alt="{{cell.alt}}" class="img-responsive center-block img-rounded" />
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+          </div>-->
+          
+          <div ng-repeat="n in [0,1,2]" class="col-md-4 col-sm-6 bottom-buffer">
+            <img ng-src="{{cells[n].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+          
+          <!--difference with the above loop comes from bottom-buffer class-->  
+          <div ng-repeat="n in [3,4,5]" class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[n].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
           </div>
         </div>
       </div>
 
       <div ng-switch-when="51">
         <div class="row">
-          <img ng-src="{{ cell[0].url}}" alt="{{ cell[0].alt}}" class="img-responsive center-block img-rounded" />
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
 
-          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
-            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[4].url}}" alt="{{cells[4].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="52">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[4].url}}" alt="{{cells[4].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="53">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[4].url}}" alt="{{cells[4].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+
+      <div ng-switch-when="41">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+      
+      <div ng-switch-when="42">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+        </div>
+      </div>
+      
+      <div ng-switch-when="43">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[1].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <img ng-src="{{cells[2].url}}" alt="{{cells[2].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+            <img ng-src="{{cells[3].url}}" alt="{{cells[3].alt}}" class="img-responsive center-block img-rounded" />
           </div>
         </div>
       </div>
@@ -38,20 +143,21 @@
       <div ng-switch-when="3">
         <div class="row">
           <div ng-repeat="cell in cells" class="col-md-4 col-sm-6 bottom-buffer">
-            <img ng-src="{{ cell.url}}" alt="{{ cell.alt}}" class="img-responsive center-block img-rounded" />
+            <img ng-src="{{cell.url}}" alt="{{cell.alt}}" class="img-responsive center-block img-rounded" />
           </div>
         </div>
       </div>
 
       <div ng-switch-default="">Loading...</div>
+      <br>
     </div>
   </div>
-</div>
 
-<div class="row text-center hidden-lg hidden-md">
-  <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-    <a ng-click="backToTop()" class="btn btn-default">{{ 'back_to_top' | i18n }}</a>
-    <br>
-    <br>
+  <div class="row text-center hidden-lg hidden-md">
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <a ng-click="backToTop()" class="btn btn-default">{{ 'back_to_top' | i18n }}</a>
+      <br>
+      <br>
+    </div>
   </div>
 </div>
