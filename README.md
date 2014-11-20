@@ -1,6 +1,6 @@
 yve5.github.io
 ==============
 
-This homepage enables me to try out my lastest work about web technologies.
+This website enables me to try out my lastest IT works.
 
-This github project uses Bootstrap 3 and AngularJS.
+This github project works with Bootstrap 3 and AngularJS.
