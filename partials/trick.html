@@ -1,26 +1,28 @@
 <div class="row">
   <div class="col-sm-12 col-md-10 col-md-offset-1">
-    <h1>{{ 'magic trick' | i18n }}</h1>
+    <h1 ng-i18n>Magic Trick</h1>
 
     <div ng-switch="current">
       <div ng-switch-default="">
-        <p class="text-justify">{{ 'magic trick notice' | i18n }}</p>
-        <h2>{{ 'step n' | i18n:'{ num : "' + current + '" }' }}</h2>
+	    <blockquote>
+	      <p ng-i18n>Choose a number between 1 and 63. Six sets will be displayed. Indicate if your number is inside the set.</p>
+	    </blockquote>
+        <h2 translate-values="{ num : current }" ng-i18n>Set n°42</h2>
         <p>
-          <button class="btn btn-primary magic-btn" ng-repeat="item in tab">{{ item}}</button>
+          <button class="btn btn-primary magic-btn" ng-repeat="item in tab">{{item}}</button>
         </p>
         <br>
-        <p>{{ 'do you see your number ?' | i18n }}</p>
+		<p ng-i18n>Do you see your number ?</p>
         <p>
-          <a href="" class="btn btn-success" role="button" ng-click="answerYes()">{{ 'yes' | i18n }}</a>
-          <a href="" class="btn btn-danger" role="button" ng-click="answerNo()">{{ 'no' | i18n }}</a>
+          <a href="" class="btn btn-success" role="button" ng-click="answerYes()" ng-i18n>Yes</a>
+          <a href="" class="btn btn-danger" role="button" ng-click="answerNo()" ng-i18n>No</a>
         </p>
       </div>
 
       <div ng-switch-when="7">
-        <h2>{{ 'result' | i18n }}</h2>
-        <p class="alert alert-danger">{{ 'your number is 42.' | i18n:'{ res : "' + result + '" }' }}</p>
-        <p><a href="#/magic-trick/page-1" class="btn btn-primary" role="button">{{ 'try again ?' | i18n }}</a></p>
+        <h2 ng-i18n>Result</h2>
+        <p class="alert alert-danger" translate-values="{ res : result }" ng-i18n>Your number is 42.</p>
+        <p><a href="#/magic-trick/page-1" class="btn btn-primary" role="button" ng-i18n>Try again ?</a></p>
       </div>
     </div>
   </div>

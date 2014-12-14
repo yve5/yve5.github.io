@@ -1,28 +1,28 @@
 {
   "items": [
     {
-      "title": "basque country",
-      "desc": "basque country",
+      "title": "Basque Country",
+      "desc": "Basque Country",
       "url": "img/Pays_Basque.jpg"
     },
     {
-      "title": "portrait",
-      "desc": "portrait",
+      "title": "Portrait",
+      "desc": "Portrait",
       "url": "img/essai.jpg"
     },
     {
-      "title": "eye",
-      "desc": "eye",
+      "title": "Eye",
+      "desc": "Eye",
       "url": "img/eye.jpg"
     },
     {
-      "title": "spacegoat",
-      "desc": "spacegoat",
+      "title": "Spacegoat",
+      "desc": "Spacegoat",
       "url": "img/spacegoat.jpg"
     },
     {
-      "title": "illusion",
-      "desc": "illusion",
+      "title": "Illusion",
+      "desc": "Illusion",
       "url": "img/illusion.jpg"
     }
   ]
