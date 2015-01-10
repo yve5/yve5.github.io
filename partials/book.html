@@ -19,19 +19,18 @@
     <div ng-switch="family">
       <div ng-switch-when="6">
         <div class="row">
-<!--          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6">
-            <img ng-src="{{cell.url}}" alt="{{cell.alt}}" class="img-responsive center-block img-rounded" />
-            <img ng-src="{{cells[0].url}}" alt="{{cells[0].alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
-          </div>-->
+          <div ng-repeat="cell in cells" class="col-md-4 col-sm-6">
+            <img ng-src="{{cell.url}}" alt="{{cell.alt}}" class="img-responsive center-block img-rounded bottom-buffer" />
+          </div>
           
-          <div ng-repeat="n in [0,1,2]" class="col-md-4 col-sm-6 bottom-buffer">
+          <!-- <div ng-repeat="n in [0,1,2]" class="col-md-4 col-sm-6 bottom-buffer">
             <img ng-src="{{cells[n].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
           </div>
           
-          <!--difference with the above loop comes from bottom-buffer class-->  
+          <!--difference with the above loop comes from bottom-buffer class-- >  
           <div ng-repeat="n in [3,4,5]" class="col-md-4 col-sm-6">
             <img ng-src="{{cells[n].url}}" alt="{{cells[1].alt}}" class="img-responsive center-block img-rounded" />
-          </div>
+          </div> -->
         </div>
       </div>
 
