@@ -1,2 +1,4 @@
-User-Agent: *
-Disallow: /lib/
+# robotstxt.org
+
+User-agent: *
+Disallow:
