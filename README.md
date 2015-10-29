@@ -1,6 +1,5 @@
-yve5.github.io
-==============
+Personal Labs
+=============
+This GitHub project presents my latest works about HTML5, CSS and Javascript in NodeJs environment.
 
-This website enables me to try out my lastest IT works.
-
-This github project works with Bootstrap 3 and AngularJS.
+This application enables me too to try out my differents projects in real environment.
