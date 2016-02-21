@@ -1,0 +1,214 @@
+<div class="container"><div class="row"><div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"><div id="my-jumbotron" class="jumbotron"><h1>Knockout.</h1><p>Démarrage rapide</p></div><p>Cette page référence les bonnes pratiques autour de l'intégration de la technologie KnockoutJs au sein des infrastrutures de la DSI.</p><hr><h1 id="anchor-intro">Introduction</h1><h3>Ajouter du JavaScript</h3><ul><li>La logique d'interface est à mettre au plus bas.</li></ul><pre>
+&lt;script type="text/javascript"&gt;
+  function (a, b) {
+    return a + b;
+  }
+&lt;/script&gt;
+</pre><ul><li>Les bibliothèques JavaScript sont également à inclure au plus bas dans le document HTML.</li></ul><pre>
+&lt;script src="Scripts/jquery-1.5.1.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre><h3>Les fonctions</h3><h4>Nommée</h4><pre>
+function addition (a, b) {
+  return a + b;
+}
+</pre><h4>Anonyme</h4><pre>
+function (a, b) {
+  return a + b;
+}
+</pre><h4>Une fonction est un objet.</h4><pre>
+var ajouter = function addition (a, b) {
+  return a + b;
+}
+
+var resultat = ajouter(2, 3);
+</pre><h3>Bonnes pratiques</h3><ul><li>Les guillements simples <code>'</code> sont préconisés dans du code JavaScript. À l'inverse, les doubles guillements <code>"</code> sont à proscrire.</li><li>Afin de faciliter le débogage, il est conseillé de coder en utilisant les conventions stricts du JavaScript. Pour ce faire, il faut écrire le code suivant en début de fichier : <code>'use strict'</code></li><li>Il est conseillé d'utiliser une copie de <code>this</code> (<code>var self = this;</code>), afin d'éviter les conflits entre différentes instances de <code>this</code>.</li><li>Les noms de variables et de fonctions doivent repescter la convention &laquo; casse de chameau &raquo; (CamelCase, en anglais). <a href="https://fr.wikipedia.org/wiki/CamelCase">Plus d'information.</a></li></ul><div class="alert alert-danger"><p><s>LENOMDELAFONCTION</s> : Tout en majuscule</p></div><div class="alert alert-danger"><p><s>lenomdelafonction</s> : Tout en minuscule</p></div><div class="alert alert-danger"><p><s>LeNomDeLaFonction</s> : UpperCamelCase</p></div><div class="alert alert-success"><p>leNomDeLaFonction : lowerCamelCase</p></div><h3>Débogage</h3><ul><li>Chrome, Edge, Firefox : F12</li><li>Point d'arrêt : clic dans la marage ou F9</li><li>Espions :<ul><li>affichage des variables locales et globales</li><li>ajout de vos variables</li></ul></li><li>Console : évaluation d'un expression</li></ul><hr><h1 id="anchor-base">Knockout : utilisation de base</h1><h3>Pourquoi l'utiliser ?</h3><ul><li>Une seule dépendance, un seul objectif</li><li>jQuery : limité à des écrans simples</li><li>MVVM : la praticité du Databinding</li><li>Multi-navigateurs :<ul><li>Microsoft Edge</li><li>Firefox 2+</li><li>Chrome</li><li>Safari</li><li>IE 6+</li><li>etc.</li></ul></li></ul><h3>Créer un ViewModel et l'appliquer</h3><pre>
+var personViewModel = function () {
+  ...
+}
+
+ko.applyBindings(new personViewModel());
+</pre><h3>Ajouter des propriétés</h3><pre>
+var personViewModel = function () {
+  var self = this;
+  <strong>self.firstName = 'Jean';</strong>
+  <strong>self.lastName = 'Dupont';</strong>
+}
+</pre><h3>Databinding</h3><h4>Les propriétés</h4><ul><li>Attribut data-bind</li><li>text, value, visible, checked, ...</li></ul><pre>
+&lt;div&gt
+  Nom : &lt;input data-bind="value: firstName" type="text" /&gt;
+&lt;/div&gt;
+&lt;div&gt
+  Prénom : &lt;input data-bind="value: lastName" type="text" /&gt;
+&lt;/div&gt;
+</pre><h4>Le texte</h4><ul><li>Appelle . toString() si l'objet n'est pas une chaîne de caractères</li><li>Protège contre l'injection de script</li></ul><pre>
+&lt;span <strong>data-bind="value: firstName"</strong>&gt;&lt;/span&gt;
+</pre><h4>La visibilité</h4><ul><li>Masque l'élément si false-like (display : none)</li><li>Affiche l'élément si true-like (supprime l'attribut display)</li></ul><pre>
+&lt;span <strong>data-bind="visible: isHot"</strong>&gt;Il fait chaud !&lt;/span&gt;
+</pre><h4>Les conditions</h4><ul><li>Contrairement à visible, l'élément est physiquement supprimé ou présent dans le DOM</li></ul><pre>
+&lt;span <strong>data-bind="if: isHot"</strong>&gt;Il fait chaud !&lt;/span&gt;
+</pre><ul><li>Et son contraire</li></ul><pre>
+&lt;span <strong>data-bind="ifnot: isHot"</strong>&gt;Il fait froid !&lt;/span&gt;
+</pre><h4>Les classes CSS</h4><ul><li>Applique la classe si true-like</li></ul><pre>
+&lt;style&gt;
+  .important { ... }
+&lt;/style&gt;
+&lt;span data-bind="css: { important: isHot }"&gt;
+  Température
+&lt;/span&gt;
+</pre><h3>Débogage Knockout</h3><ul><li>Erreur courante : pourquoi un binding ne fonctionne pas ?</li><li>Affichage du contexte de binding :</li></ul><pre>
+&lt;pre data-bind="text: ko.toJSON($data, null, 2)"&gt;&lt;/pre&gt;
+</pre><ul><li>Knockout Context Debugger (pour Chrome)</li></ul><hr><h1 id="anchor-avancee">Knockout : utilisation avancée</h1><h3>Les observables</h3><h4>Utiliser des propriétés observables</h4><pre>
+var personViewModel = function () {
+  var self = this;
+  <strong>self.firstName = ko.observable('');</strong>
+  <strong>self.lastName =  ko.observable('');</strong>
+}
+</pre><h4>Syntaxe du data-bind</h4><ul><li>Propriété du modèle</li></ul><pre>
+&lt;span <strong>data-bind="text: firstName"</strong>&gt;&lt;/span&gt;
+</pre><ul><li>Comparaison</li></ul><pre>
+&lt;span <strong>data-bind="visible: firstName().length > 0"</strong>&gt;&lt;/span&gt;
+</pre><ul><li>Multiple</li></ul><pre>
+&lt;span <strong>data-bind="text: firstName, visible: isMale"</strong>&gt;&lt;/span&gt;
+</pre><ul><li>Appel de fonction</li></ul><pre>
+&lt;span <strong>data-bind="text: makeUpper(firstName())"</strong>&gt;&lt;/span&gt;
+</pre><h4>Lire et écrire des observables</h4><ul><li>Un ko.observable est un objet complexe.</li><li>Pour lire :</li></ul><pre>
+var nomSaisi = self.firstName();
+</pre><ul><li>Pour écrire :</li></ul><pre>
+self.firstName('Nouvelle valeur');
+</pre><h3>Propriétés calculées</h3><ul><li>La gestion des dépendances (et le recalcul) est automatique.</li></ul><pre>
+var personViewModel = function () {
+  this.fullNameLength = ko.computed( function () {
+    return this.fullName().length();
+  }, this);
+}
+</pre><ul><li>Le <code>this</code> définit quel sera le <code>this</code> dans la fonction.</li><li>La pratique du self évite de succomber aux changements de contexte</li></ul><pre>
+var personViewModel = function () {
+  <strong>var self = this;</strong>
+  self.fullNameLength = ko.computed( function () {
+    return <strong>self</strong>.fullName().length();
+  });
+}
+</pre><ul><li>Quand la valeur calculée peut être saisie par l'utilisateur, il est nécessaire d'activer l'option d'écriture.</li></ul><pre>
+var personViewModel = function () {
+  var self = this;
+  self.fullName = ko.computed( function () {<strong>
+      read:   function() { ... },
+      write:  function() { ... }</strong>
+  });
+}
+</pre><h3>Performance</h3><h4>Pure</h4><ul><li>Pure : la fonction d'évaluation ne modifie aucune valeur</li><li>Amélioration de performance et usage RAM avec pureComputed</li></ul><pre>
+var personViewModel = function () {
+  var self = this;
+  self.fullNameLength = ko.<strong>pureComputed</strong>( function () {
+    return self.fullName().length();
+  });
+}
+</pre><div class="alert alert-danger" role="alert">La fonction pureComputed est une fonctionnalité récente de Knockout. Il est nécessaire de vérifier son existence.</div><h4>rateLimit</h4><ul><li>Si beaucoup de dépendances, évaluation fréquente</li></ul><pre>
+var personViewModel = function () {
+  var self = this;
+  self.fullNameLength = ko.computed( function () {
+    return self.fullName().length();
+  })<strong>.extend({ rateLimit : 50 })</strong>;
+}
+</pre><ul><li>Fonctionne aussi bien sur observable que sur computed</li></ul><h3>Les méthodes</h3><h4>Ajouter des méthodes</h4><ul><li>Quand la valeur calculée peut être saisie par l'utilisateur</li></ul><pre>
+var personViewModel = function () {
+  var self = this;
+  ...
+  self.makeNameUppercase = function() {
+    ...
+  }
+}
+</pre><pre>
+&lt;button <strong>data-bind="click: makeNameUppercase"</strong>&gt;Majuscules&lt;/button&gt;
+</pre><h4>Le Binding Click</h4><ul><li>Knockout passe à la fonction :<ul><li>Les paramètres d'évènement</li><li>Le contexte courant</li></ul></li></ul><pre>
+&lt;button <strong>data-bind="click: makeNameUppercase"</strong>&gt;Majuscules&lt;/button&gt;
+
+var personViewModel = function () {
+  var self = this;
+  self.<strong>makeNameUppercase</strong> = function() {
+    ...
+  }
+}
+</pre><h4>Passer des paramètres choisis</h4><ul><li>Syntaxe 1</li></ul><pre>
+&lt;button <strong>data-bind="click: function(data, event) {
+myFunction('param1', 'param2, data, event)
+}"</strong>&gt;Majuscules&lt;/button&gt;
+</pre><ul><li>Syntaxe 2</li></ul><pre>
+&lt;button <strong>data-bind="click: myFunction.bind($data, 
+'param1', 'param2')"</strong>&gt;Majuscules&lt;/button&gt;
+</pre><h4>Gérer d'autres évènements</h4><ul><li>Pour tous les évènements JavaScript</li></ul><pre>
+&lt;button <strong>data-bind="event: { mouseover: MakeItBold }"</strong>&gt;Survolez-moi&lt;/button&gt;
+</pre><ul><li>Mêmes paramètres que pour le binding click</li></ul><h3>Les collections</h3><h4>Énumérer une collection</h4><ul><li>Le binding foreach repète les éléments enfants dans le DOM</li></ul><pre>
+&lt;ul <strong>data-bind="foreach: elements"</strong>&gt;
+  &lt;li <strong>data-bind="text: title"</strong>&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre><h4>Contexte dans une collection</h4><pre>
+&lt;ul data-bind="foreach: elements"&gt;
+  &lt;li data-bind="text: title"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre><ul><li>Title est un contexte <code>element</code></li><li>Pour sortir du contexte :<ul><li>$index</li><li>$parent: collection</li><li>$root: le ViewModel principal</li></ul></li></ul><h4>Sortie du contexte : exemple</h4><pre>
+&lt;ul data-bind="foreach: elements"&gt;
+  &lt;li data-bind="text: title<strong>, click : $parent.remove</strong>"&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre><h3>Tableaux observables</h3><ul><li>Notification de la vue lorsque les éléments changent : ajout, suppression, déplacement</li></ul><pre>
+this.elements = ko.observableArray();
+
+this.elements.push(...);
+</pre><ul><li>Limitation<ul><li>observableArray suit les modifications du tableau, pas les modifications de chaque élément du tableau</li><li>Si nécessaire, chaque élément doit avoir des propriétés ko.observable</li></ul></li><li>Fonctions de ko.observableArray<ul><li>Construction : éléments initiaux</li><li>Comme les tableaux JavaScript : push / unshift, pop / shift, indexOf, reverse, splice, slice, sort</li><li>En plus : remove, removeAll</li></ul></li></ul><h3>Composants</h3><h4>Intérêts</h4><ul><li>Permettent d'étendre la syntaxe HTML avec des nouveaux éléments</li><li>Factorisation du HTML et du ViewModel</li><li>Réutilisable</li></ul><pre>
+&lt;div&gt;
+  &lt;div data-bind="text: firstName"&gt;&lt;/div&gt;
+  <strong>&lt;numero-secu params="value: ssn"&gt;&lt;/numero-secu&gt;</strong>
+&lt;/div&gt;
+</pre><h4>Définition</h4><pre>
+&lt;template id='numero-secu-template'&gt;
+  ...
+&lt;/template&gt;
+</pre><pre>
+nsViewModel = function (params) {...}
+
+ko.components.register('numero-secu', {
+  viewModel: nsViewModel,
+  template: { element: 'numero-secu-template' }
+}
+</pre><h4>Définition avec un chargeur de module</h4><ul><li>Knockout appelle les deux require sur le chargeur AMD (exemple: RequireJS)</li></ul><pre>
+nsViewModel = function (params) {...}
+
+ko.components.register('numero-secu', {
+  viewModel: { require: 'js/num-secu' },
+  template: { require: 'text!num-secu.html' }
+}
+</pre><h3>Custom Bindings</h3><h4>Intérêts</h4><ul><li>Extension de la syntaxe des bindings<ul><li>Nom personnalisé</li><li>Accès à l'élément DOM</li><li>Accès à la valeur de binding et à toutes les valeurs de binding</li></ul></li></ul><pre>
+&lt;div data-bind="text: firstName<strong>, graph: ageData</strong>"&gt;&lt;/div&gt;
+</pre><h4>Définition</h4><pre>
+&lt;div data-bind="text: firstName<strong>, graph: ageData</strong>"&gt;&lt;/div&gt;
+</pre><pre>
+ko.bindingHandlers.graph = {
+  init : function (element, valueAccessor, allBindings) {
+    ...
+  },
+  update : function (element, valueAccessor, allBindings) {
+    ...
+  }
+}
+</pre><h4>Fonctions</h4><ul><li>init : appelée une fois</li><li>update : appelée au début puis dès qu'une valeur observée par update change</li></ul><pre>
+ko.bindingHandlers.graph = {
+  init : function (element, valueAccessor, allBindings) {
+    ...
+  },
+  update : function (element, valueAccessor, allBindings) {
+    ...
+  }
+}
+</pre><h4>Paramètres des fonctions</h4><ul><li>element : élément DOM</li><li>valueAccessor : fonction pour valeur passée au Binding</li><li>allBindings : autres Bindings</li></ul><pre>
+ko.bindingHandlers.graph = {
+  ...
+  update: function (
+      element,
+      valueAccessor,
+      allBindings,
+      viewModel,
+      bindingContext)
+  {
+    ...
+  }
+}
+</pre><hr><h1 id="anchor-reference">Références</h1><ul><li><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference">Fondation Mozilla · Support JavaScript</a></li><li><a href="http://knockoutjs.com/documentation/introduction.html">Documentation officielle Knockout</a></li><li>Arnaud Weil · formateur Knockout</li><li><a href="https://fr.wikipedia.org/">Wikipedia</a></li></ul></div></div></div>
